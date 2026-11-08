@@ -22,7 +22,7 @@ Build and compare five classification models on ONE dataset, compute Accuracy, A
 
 ## c. GitHub repository link
 
-**Your real repository URL:** https://github.com/ankitphysicist/BITS-ML-Assignment-2
+**GitHub repository URL:** https://github.com/ankitphysicist/BITS-ML-Assignment-2
 
 **Live Streamlit URL:** [Add once Streamlit Cloud deployment is completed and tested]
 
@@ -70,23 +70,23 @@ project-folder/
   tests/test_core.py        # reproducibility checks
   make_submission_pdf.py    # editable PDF submission generator
   requirements-report.txt   # PDF-only dependency
-  submission_draft.pdf      # Generated report; marked incomplete until the live app URL is supplied
+  submission_template.pdf   # SAMPLE; not submission-ready
 ```
 
 ## How to run locally
 
-1. Use Python 3.12 and install the dependencies:
+1. Use Python 3.12 and install dependencies:
 
    ```bash
    python -m pip install -r requirements.txt
    python -m pip install pytest
    ```
 
-2. Run `python train_models.py` if you want to reproduce and update the five saved estimators.
-3. Run `python -m pytest -q` to validate model evaluation and the data split.
-4. Run `streamlit run app.py` and open its local URL.
-5. Download and upload `test_data.csv` to confirm the five classifiers, metrics, confusion matrix and classification report.
-6. Personalize the project and experiment before using this coursework learning reference in any academic submission.
+2. Run `python train_models.py` if you want to reproduce the five saved classifiers.
+3. Run `python -m pytest -q` to validate data/model scores.
+4. Run `streamlit run app.py` and open the local URL.
+5. Upload `test_data.csv` and confirm all six metrics, confusion matrix and report.
+6. Review and personalize this learning reference before any academic submission.
 
 ## How the Streamlit application works
 
@@ -109,14 +109,14 @@ project-folder/
 
 ## Generate the PDF report
 
-The requested report includes the verified GitHub link, the deployed Streamlit app link when it exists, and the full README text. The Virtual Lab screenshot requirement is intentionally omitted at the user's request. This differs from the original assignment brief.
+The report includes the verified GitHub link, the deployed Streamlit URL (when available) and README text. The BITS Virtual Lab screenshot is intentionally omitted at the user's request; this differs from the original assignment instructions.
 
 ```bash
 python -m pip install -r requirements-report.txt
 python make_submission_pdf.py --github "https://github.com/ankitphysicist/BITS-ML-Assignment-2" --app "https://YOUR-REAL-APP.streamlit.app" --output "final_submission.pdf"
 ```
 
-Do not invent or guess the live app URL. If the link is unavailable, generate the PDF without `--app` and it will be marked incomplete. Verify the app URL and results before submitting.
+If a working app URL is unavailable, generate without `--app`; the report will be marked incomplete. Never invent or guess the live link.
 
 ## Metric definitions
 
