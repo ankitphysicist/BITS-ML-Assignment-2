@@ -68,3 +68,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Reproduce these fitted artifacts with python train_models.py in BITS Virtual Lab.
