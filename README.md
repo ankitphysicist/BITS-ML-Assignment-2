@@ -28,7 +28,7 @@ Build and compare five classification models on ONE dataset, compute Accuracy, A
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ankit-ml-assignment-2.streamlit.app/)
 
-> Live link was supplied by the app owner. GitHub's automated frontend test passed; independent verification of the publicly hosted URL is pending.
+> The public Streamlit application was verified using a real Chromium browser: the model comparison and confusion matrix rendered, and uploading `test_data.csv` produced the evaluation report. [View the successful browser test](https://github.com/ankitphysicist/BITS-ML-Assignment-2/actions/runs/42483310174).
 
 ## d. Models used and comparison table
 
