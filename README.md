@@ -1,6 +1,6 @@
 # Classification Model Lab - Machine Learning Assignment 2 (Worked Example)
 
-> **Coursework learning reference.** This is a reproducible worked example, not a ready-to-submit assignment. The brief permits AI for learning support only. Run and adapt the experiment yourself in BITS Virtual Lab, write your own observations, and upload a genuine screenshot and your own links. Do not present these example files or model outputs as independently authored without attribution.
+> **Coursework learning reference.** This is a reproducible worked example, not a ready-to-submit assignment. The brief permits AI for learning support only. Run and adapt the experiment yourself, write your own observations, and use only verified links. Do not present these example files or model outputs as independently authored without attribution.
 
 ## a. Problem statement
 
@@ -24,7 +24,7 @@ Build and compare five classification models on ONE dataset, compute Accuracy, A
 
 **Your real repository URL:** https://github.com/ankitphysicist/BITS-ML-Assignment-2
 
-**Your deployed Streamlit URL:** `[ADD YOUR LIVE STREAMLIT URL AFTER DEPLOYMENT]`
+**Live Streamlit URL:** [Add once Streamlit Cloud deployment is completed and tested]
 
 ## d. Models used and comparison table
 
@@ -70,24 +70,23 @@ project-folder/
   tests/test_core.py        # reproducibility checks
   make_submission_pdf.py    # editable PDF submission generator
   requirements-report.txt   # PDF-only dependency
-  submission_template.pdf   # SAMPLE; not submission-ready
+  submission_draft.pdf      # Generated report; marked incomplete until the live app URL is supplied
 ```
 
-## How to run in BITS Virtual Lab
+## How to run locally
 
-1. Open the Virtual Lab terminal and create your own project folder.
-2. Confirm a Python environment compatible with scikit-learn 1.8.0, then install packages:
+1. Use Python 3.12 and install the dependencies:
 
    ```bash
    python -m pip install -r requirements.txt
+   python -m pip install pytest
    ```
 
-3. Run `python train_models.py`. This creates `dataset.csv`, `test_data.csv`, `metadata.json`, five joblib models, and `model_comparison.csv`.
-4. Run `python -m pytest -q` (install `pytest` if necessary).
-5. Run `streamlit run app.py` and open the displayed local URL.
-6. Use **Download example test CSV**, upload the same CSV back through the sidebar, switch through the 5 models, and verify scores, confusion matrix and classification report.
-7. Take your **own genuine screenshot in BITS Virtual Lab** showing the running assignment (required by the brief).
-8. Change the example's styling, experiment design, labels, explanations, observations, and/or parameters to make an independent project you understand. Rerun training after changing any parameter or train/test split.
+2. Run `python train_models.py` if you want to reproduce and update the five saved estimators.
+3. Run `python -m pytest -q` to validate model evaluation and the data split.
+4. Run `streamlit run app.py` and open its local URL.
+5. Download and upload `test_data.csv` to confirm the five classifiers, metrics, confusion matrix and classification report.
+6. Personalize the project and experiment before using this coursework learning reference in any academic submission.
 
 ## How the Streamlit application works
 
@@ -108,18 +107,16 @@ project-folder/
 5. Open the new `.streamlit.app` URL and test CSV upload, model selection, 6 metrics, confusion matrix/report.
 6. Paste the **real live URLs** into this README and into your submission report PDF.
 
-## How to create the single PDF report
+## Generate the PDF report
 
-The assignment requires **one PDF** with (in order): GitHub link, live app link, real BITS Lab screenshot, and the full README content.
-
-Run after replacing the links and taking the screenshot:
+The requested report includes the verified GitHub link, the deployed Streamlit app link when it exists, and the full README text. The Virtual Lab screenshot requirement is intentionally omitted at the user's request. This differs from the original assignment brief.
 
 ```bash
 python -m pip install -r requirements-report.txt
-python make_submission_pdf.py --github "https://github.com/YOUR-USER/YOUR-REPO" --app "https://YOUR-APP.streamlit.app" --screenshot "my_bits_lab_screenshot.png" --output "final_submission.pdf"
+python make_submission_pdf.py --github "https://github.com/ankitphysicist/BITS-ML-Assignment-2" --app "https://YOUR-REAL-APP.streamlit.app" --output "final_submission.pdf"
 ```
 
-Check the generated PDF's links, screenshot, table, and appendixed README before uploading it. The included `submission_template.pdf` deliberately contains blank placeholders and **cannot count as your final submission**.
+Do not invent or guess the live app URL. If the link is unavailable, generate the PDF without `--app` and it will be marked incomplete. Verify the app URL and results before submitting.
 
 ## Metric definitions
 
@@ -132,4 +129,4 @@ Check the generated PDF's links, screenshot, table, and appendixed README before
 
 ## Reproducibility and academic integrity
 
-This educational reference is generated without invented screenshots or deployment URLs. Your instructor's brief explicitly notes AI is permitted for **learning support only**, checks commit history and originality, and warns copied submissions can receive zero marks. Carry out work yourself in BITS Lab and rewrite the report based on your own tested results.
+This educational reference is generated without invented screenshots or deployment URLs. Your instructor's brief explicitly notes AI is permitted for **learning support only**, checks commit history and originality, and warns copied submissions can receive zero marks. Review, adapt, and execute the code yourself and rewrite the report based on your own tested results.
