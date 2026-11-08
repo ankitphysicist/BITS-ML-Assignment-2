@@ -1,0 +1,62 @@
+name: Browser Test of Public Streamlit App
+
+on:
+  push:
+    paths:
+      - ".github/workflows/browser-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser automation
+        run: python -m pip install playwright
+      - name: Check real-browser Streamlit app and CSV upload
+        env:
+          APP_URL: https://ankit-ml-assignment-2.streamlit.app/
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          from playwright.sync_api import sync_playwright
+          url=os.environ["APP_URL"]
+          with sync_playwright() as p:
+              browser=p.chromium.launch(channel="chrome", headless=True, args=["--no-sandbox"])
+              page=browser.new_page(viewport={"width":1440,"height":900})
+              try:
+                  page.goto(url, wait_until="domcontentloaded", timeout=90000)
+                  page.get_by_role("heading", name=re.compile("Classification Model Lab")).wait_for(timeout=150000)
+                  page.get_by_text("Comparison across all five classifiers").wait_for(timeout=60000)
+                  page.get_by_text("Confusion matrix").wait_for(timeout=60000)
+                  print("SUCCESS: Real browser loaded the deployed app, model table and confusion matrix.")
+                  upload=page.locator('input[type="file"]').first
+                  upload.set_input_files("test_data.csv")
+                  page.get_by_text("Uploaded data", exact=True).wait_for(timeout=60000)
+                  page.get_by_text("Classification report").wait_for(timeout=60000)
+                  print("SUCCESS: Uploaded held-out test CSV and received evaluation report.")
+                  page.screenshot(path="streamlit-live.png", full_page=True)
+              except Exception:
+                  print("Browser's current URL:",page.url)
+                  print("Page title:",page.title())
+                  print("Page text preview:",page.locator("body").inner_text(timeout=5000)[:1200])
+                  page.screenshot(path="streamlit-error.png", full_page=True)
+                  raise
+              finally:
+                  browser.close()
+          PY
+      - name: Upload browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: streamlit-browser-check
+          path: streamlit-*.png
+          if-no-files-found: ignore
