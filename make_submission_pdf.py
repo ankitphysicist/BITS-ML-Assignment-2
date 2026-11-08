@@ -1,4 +1,4 @@
-"""Create a submission PDF using only verified user-provided links and screenshot."""
+"""Build a PDF report with real URLs. Lab screenshot intentionally omitted at user request."""
 import argparse
 import textwrap
 from pathlib import Path
@@ -14,12 +14,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--github", default="")
     parser.add_argument("--app", default="")
-    parser.add_argument("--screenshot", type=Path)
     parser.add_argument("--output", default="submission_draft.pdf")
     args = parser.parse_args()
     styles = getSampleStyleSheet()
     story = [Paragraph("Machine Learning - Assignment 2", styles["Title"]), Spacer(1, 18)]
-    ready = args.github.startswith("https://") and args.app.startswith("https://") and args.screenshot and args.screenshot.exists()
+    ready = args.github.startswith("https://") and args.app.startswith("https://") and ".streamlit.app" in args.app
     if not ready:
         story.append(Paragraph("INCOMPLETE - NOT READY FOR SUBMISSION", styles["Heading2"]))
     for number, label, url in [(1,"GitHub repository",args.github),(2,"Streamlit application",args.app)]:
@@ -29,17 +28,9 @@ def main():
             story.append(Paragraph(f'<link href="{safe}">{safe}</link>', styles["BodyText"]))
         else:
             story.append(Paragraph("[ADD VERIFIED LINK]", styles["BodyText"]))
-    story.append(Paragraph("3. BITS Virtual Lab execution screenshot", styles["Heading2"]))
-    if args.screenshot and args.screenshot.exists():
-        img = Image(str(args.screenshot))
-        w, h = img.imageWidth, img.imageHeight
-        scale = min(470/w, 260/h)
-        img.drawWidth, img.drawHeight = w*scale, h*scale
-        story.append(img)
-    else:
-        story.append(Paragraph("[INSERT ACTUAL BITS LAB SCREENSHOT]", styles["BodyText"]))
+    story.append(Paragraph("Scope: BITS Virtual Lab screenshot omitted at user request; the published assignment requires it.", styles["BodyText"]))
     story.append(PageBreak())
-    story.append(Paragraph("4. README.md (full content)", styles["Title"]))
+    story.append(Paragraph("3. README.md (full content)", styles["Title"]))
     readme = (ROOT/"README.md").read_text(encoding="utf-8")
     lines = []
     for line in readme.splitlines():
@@ -48,7 +39,7 @@ def main():
         story.append(Preformatted("\n".join(lines[i:i+35]), styles["Code"], maxLineLength=92))
     doc = SimpleDocTemplate(args.output, pagesize=A4, leftMargin=45, rightMargin=45, topMargin=45, bottomMargin=45)
     doc.build(story)
-    print("Created", args.output, "(complete)" if ready else "(INCOMPLETE)")
+    print("Created", args.output, "(URL supplied; verify app manually)" if ready else "(INCOMPLETE: live app URL missing)")
 
 if __name__ == "__main__":
     main()
