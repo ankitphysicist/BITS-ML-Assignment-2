@@ -72,9 +72,10 @@ project-folder/
   model/                    # five pre-fitted .joblib files
   .streamlit/config.toml    # UI theme
   tests/test_core.py        # reproducibility checks
-  make_submission_pdf.py    # editable PDF submission generator
+  tests/test_streamlit_smoke.py # Streamlit frontend test
+  .github/workflows/        # model builder, test checks, live browser check
+  make_submission_pdf.py    # PDF report generator
   requirements-report.txt   # PDF-only dependency
-  submission_template.pdf   # SAMPLE; not submission-ready
 ```
 
 ## How to run locally
