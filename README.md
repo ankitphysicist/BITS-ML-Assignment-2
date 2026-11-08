@@ -24,7 +24,11 @@ Build and compare five classification models on ONE dataset, compute Accuracy, A
 
 **GitHub repository URL:** https://github.com/ankitphysicist/BITS-ML-Assignment-2
 
-**Live Streamlit URL:** [Add once Streamlit Cloud deployment is completed and tested]
+**Live Streamlit URL:** https://ankit-ml-assignment-2.streamlit.app/
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ankit-ml-assignment-2.streamlit.app/)
+
+> Live link was supplied by the app owner. GitHub's automated frontend test passed; independent verification of the publicly hosted URL is pending.
 
 ## d. Models used and comparison table
 
@@ -105,7 +109,7 @@ project-folder/
 3. Go to https://share.streamlit.io/ and sign in with GitHub.
 4. Click **Create app**, select your repository, `main` branch, and `app.py` as the entrypoint, then deploy.
 5. Open the new `.streamlit.app` URL and test CSV upload, model selection, 6 metrics, confusion matrix/report.
-6. Paste the **real live URLs** into this README and into your submission report PDF.
+6. Include the app URL above and the repository URL in your report PDF. Test the public deployment yourself before submission.
 
 ## Generate the PDF report
 
